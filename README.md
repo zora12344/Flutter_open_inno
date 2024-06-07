@@ -1,4 +1,4 @@
-# Open Inno Project 
+# Open Innovation(AgriTech) Project 
 
 # Guide d'installation de Flutter pour Flutter_open_inno
 
