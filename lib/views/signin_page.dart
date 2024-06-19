@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
+
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -12,7 +14,6 @@ class _SignInPageState extends State<SignInPage> {
   String _email = '';
   String _address = '';
   String _telephone = '';
-
 
   @override
   Widget build(BuildContext context) {

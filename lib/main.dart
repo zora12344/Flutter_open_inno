@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import './views/login_page.dart'; // Importez la page de connexion
+import './views/profile_page.dart'; // Importez la page de profil
+import './views/signin_page.dart'; // Importez la page d'inscription
+import './views/description_page.dart'; // Importez la page de description
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +21,18 @@ class MyApp extends StatelessWidget {
       ),
       // Utilisez LoginPage comme page d'accueil
       home: const LoginPage('home'),
+      routes: {
+        'description': (context) => const DescriptionPage(),
+        'login': (context) => const LoginPage('home'),
+        'profile': (context) => ProfilePage(user: User(
+          firstName: 'John',
+          lastName: 'Doe',
+          email: 'john.doe@example.com',
+          phone: '1234567890',
+          address: '123 Main St',
+        )),
+        'signing': (context) => const SignInPage(),
+      },
     );
   }
 }

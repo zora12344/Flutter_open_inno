@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import './description_page.dart';
 import '../navbar/navbar.dart';
 
 class User {
@@ -66,6 +66,25 @@ class _ProfilePageState extends State<ProfilePage> {
     _phoneController.text = widget.user.phone;
   }
 
+  void _onItemSelected(int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, 'description'); // Navigate to description page when home icon is clicked
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, 'watch');
+        break;
+      case 2:
+      // Navigate to the camera page or handle the camera functionality here
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, 'profile');
+        break;
+      case 4:
+        Navigator.pushReplacementNamed(context, 'signin');
+        break;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -228,28 +247,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               // Ajout du menu de navigation en bas de la page
               const SizedBox(height: 20.0),
-              NavBar(
-                onItemSelected: (index) {
-                  // Gérer la navigation ici
-                  switch (index) {
-                    case 0:
-                    // Naviguer vers la page d'accueil
-                      Navigator.pushReplacementNamed(context, 'home');
-                      break;
-                    case 1:
-                    // Naviguer vers la page de la carte
-                      Navigator.pushReplacementNamed(context, 'map');
-                      break;
-                    case 2:
-                    // Naviguer vers la page de création de publication
-                      Navigator.pushReplacementNamed(context, 'new_post');
-                      break;
-                    case 3:
-                    // Rester sur la page de profil
-                      break;
-                  }
-                },
-              ),
+              NavBar(onItemSelected: _onItemSelected),
             ],
           ),
         ),
