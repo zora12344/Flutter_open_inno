@@ -75,13 +75,13 @@ class _ProfilePageState extends State<ProfilePage> {
         Navigator.pushReplacementNamed(context, 'watch');
         break;
       case 2:
-      // Navigate to the camera page or handle the camera functionality here
+        Navigator.pushReplacementNamed(context, 'camera');
         break;
       case 3:
         Navigator.pushReplacementNamed(context, 'profile');
         break;
       case 4:
-        Navigator.pushReplacementNamed(context, 'signin');
+        Navigator.pushReplacementNamed(context, 'signing');
         break;
     }
   }
