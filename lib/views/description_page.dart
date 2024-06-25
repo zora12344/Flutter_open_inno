@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import './profile_page.dart';
 import '../navbar/navbar.dart'; // Importez NavBar
 
+// Classe pour les informations des vaches
+class Cow {
+  final String id;
+  final int age;
+  final DateTime birthDate;
 
+  Cow({required this.id, required this.age, required this.birthDate});
+}
 
 class DescriptionPage extends StatelessWidget {
   const DescriptionPage({super.key});
@@ -29,6 +36,17 @@ class DescriptionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Exemples de données des vaches
+    final List<Cow> cows = [
+      Cow(id: '001', age: 5, birthDate: DateTime(2019, 3, 15)),
+      Cow(id: '002', age: 3, birthDate: DateTime(2021, 7, 12)),
+      Cow(id: '003', age: 4, birthDate: DateTime(2020, 5, 20)),
+      Cow(id: '001', age: 5, birthDate: DateTime(2019, 3, 10)),
+      Cow(id: '002', age: 3, birthDate: DateTime(2021, 7, 11)),
+      Cow(id: '003', age: 4, birthDate: DateTime(2020, 5, 20)),
+      // Ajoutez plus de données de vaches ici
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Description de la vache'),
@@ -68,14 +86,29 @@ class DescriptionPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20.0),
                     const Text(
-                      'Les vaches sont des mammifères domestiqués appartenant à l\'espèce Bos taurus. '
-                          'Elles sont élevées principalement pour leur lait, leur viande et leur cuir. '
-                          'Les vaches jouent également un rôle important dans l\'agriculture en tant que '
-                          'animaux de trait et sources de fumier pour fertiliser les cultures.',
+                      'Informations du troupeau',
                       style: TextStyle(
-                        fontSize: 16.0,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                      textAlign: TextAlign.justify,
+                    ),
+                    const SizedBox(height: 10.0),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        columns: const [
+                          DataColumn(label: Text('ID')),
+                          DataColumn(label: Text('Âge')),
+                          DataColumn(label: Text('Date de naissance')),
+                        ],
+                        rows: cows.map((cow) {
+                          return DataRow(cells: [
+                            DataCell(Text(cow.id)),
+                            DataCell(Text(cow.age.toString())),
+                            DataCell(Text('${cow.birthDate.day}/${cow.birthDate.month}/${cow.birthDate.year}')),
+                          ]);
+                        }).toList(),
+                      ),
                     ),
                   ],
                 ),

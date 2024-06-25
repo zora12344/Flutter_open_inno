@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
       // Vérifiez si les informations d'identification sont valides
       if (_username == 'utilisateur' && _password == 'motdepasse') {
         // Si les informations d'identification sont valides, définissez l'utilisateur fictif avec des données
-        User user = User(
+        User user = User (
           firstName: 'John',
           lastName: 'Doe',
           email: 'john.doe@example.com',

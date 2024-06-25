@@ -91,7 +91,8 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('Profil'),
       ),
-      body: SingleChildScrollView(
+        body: SizedBox.expand(
+        child: SingleChildScrollView(
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -251,6 +252,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
         ),
+       ),
       ),
     );
   }
