@@ -34,6 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
   File? _image;
+  bool _notificationsEnabled = true;
 
   Future<void> _pickImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -58,6 +59,13 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _logout() {
     Navigator.pushReplacementNamed(context, 'login'); // Navigate to login page
+  }
+
+  void _toggleNotifications(bool isEnabled) {
+    setState(() {
+      _notificationsEnabled = isEnabled;
+      // Implement notification management logic here
+    });
   }
 
   @override
@@ -86,15 +94,14 @@ class _ProfilePageState extends State<ProfilePage> {
         break;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profil'),
       ),
-        body: SizedBox.expand(
-        child: SingleChildScrollView(
-        child: Container(
+      body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/background_plant.jpg'),
@@ -103,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.all(16.0),
@@ -112,6 +119,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     GestureDetector(
                       onTap: () {
@@ -153,6 +161,25 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    const SizedBox(height: 20.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ElevatedButton(
+                          onPressed: () {
+                            // Handle modification of first name
+                          },
+                          child: Text('Modifier le nom'),
+                        ),
+                        const SizedBox(width: 20.0),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Handle modification of last name
+                          },
+                          child: Text('Modifier le prénom'),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 20.0),
                     Row(
@@ -203,6 +230,27 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 20.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const Icon(Icons.notifications_active, color: Colors.green),
+                        const SizedBox(width: 10.0),
+                        Text('Notifications', style: TextStyle(fontSize: 16.0)),
+                        const SizedBox(width: 20.0),
+                        Radio(
+                          value: true,
+                          groupValue: _notificationsEnabled,
+                          onChanged: (value) {
+                            _toggleNotifications(true);
+                          },
+                          activeColor: Colors.green,
+                        ),
+                        const SizedBox(width: 10.0),
+                        Text('Activer', style: TextStyle(fontSize: 16.0)),
+                        const SizedBox(width: 20.0),
+                      ],
+                    ),
                     const Divider(),
                     ElevatedButton(
                       onPressed: _saveProfile,
@@ -213,21 +261,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                         ),
-                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 30.0)),
+                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: 15.0)),
                       ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          SizedBox(width: 10.0),
-                          Text('Enregistrer'),
-                        ],
-                      ),
+                      child: const Text('Enregistrer'),
                     ),
                     const Divider(),
                     ElevatedButton(
                       onPressed: _logout,
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(Color.fromRGBO(148, 147, 147, 0.75)),
+                        backgroundColor: MaterialStateProperty.all(const Color.fromRGBO(148, 147, 147, 0.75)),
                         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
@@ -248,12 +290,10 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               // Ajout du menu de navigation en bas de la page
-              const SizedBox(height: 20.0),
+             const SizedBox(height: 20.0),
               NavBar(onItemSelected: _onItemSelected),
             ],
           ),
-        ),
-       ),
       ),
     );
   }
