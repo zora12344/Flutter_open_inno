@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
   final Function(int) onItemSelected;
+  final int? currentIndex; // Ajout du currentIndex comme paramètre optionnel
 
-  const NavBar({Key? key, required this.onItemSelected}) : super(key: key);
+  const NavBar({Key? key, required this.onItemSelected, this.currentIndex}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

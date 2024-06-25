@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './profile_page.dart';
 import '../navbar/navbar.dart'; // Importez NavBar
+import './camera_page.dart';
 
 // Classe pour les informations des vaches
 class Cow {
@@ -23,7 +24,7 @@ class DescriptionPage extends StatelessWidget {
         Navigator.pushReplacementNamed(context, 'watch');
         break;
       case 2:
-      // Navigate to the camera page or handle the camera functionality here
+        Navigator.pushReplacementNamed(context, 'camera');
         break;
       case 3:
         Navigator.pushReplacementNamed(context, 'profile');

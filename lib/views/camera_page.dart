@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:video_player/video_player.dart';
+import '../navbar/navbar.dart';
 
 class CameraPage extends StatefulWidget {
   @override
@@ -37,6 +38,26 @@ class _CameraPageState extends State<CameraPage> {
     }
   }
 
+  void _onItemSelected(BuildContext context, int index) {
+    switch (index) {
+      case 0:
+        Navigator.pushReplacementNamed(context, 'description');
+        break;
+      case 1:
+        Navigator.pushReplacementNamed(context, 'watch');
+        break;
+      case 2:
+      // Stay on camera page
+        break;
+      case 3:
+        Navigator.pushReplacementNamed(context, 'profile');
+        break;
+      case 4:
+        Navigator.pushReplacementNamed(context, 'signin');
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +86,10 @@ class _CameraPageState extends State<CameraPage> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: NavBar(
+        onItemSelected: (index) => _onItemSelected(context, index),
+        currentIndex: 2, // Set current index to 2 for camera page
       ),
     );
   }
