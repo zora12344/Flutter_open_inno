@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       // Utilisez LoginPage comme page d'accueil
       home: const LoginPage('home'),
       routes: {
-        'description': (context) => const DescriptionPage(),
+        'description': (context) =>  DescriptionPage(),
         'camera': (context) =>  CameraPage(),
         'login': (context) => const LoginPage('home'),
         'profile': (context) => ProfilePage(user: User(
